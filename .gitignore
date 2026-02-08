@@ -115,3 +115,6 @@ backend/embedding/
 backend/embedding.zip
 *.safetensors
 *.zip
+
+# Spec workflow (本地工作流配置)
+.spec-workflow/
