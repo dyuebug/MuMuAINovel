@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:18-alpine
-    container_name: mumuainovel-postgres
+    container_name: mumuainovel-ddy-postgres-ddy-ddy
     env_file:
       - ./.env
     environment:
@@ -58,7 +58,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: mumujie/mumuainovel:latest
-    container_name: mumuainovel
+    container_name: mumuainovel-ddy-ddy
     env_file:
       - ./.env
     depends_on:
@@ -113,13 +113,12 @@ services:
       LOCAL_AUTH_ENABLED: ${LOCAL_AUTH_ENABLED:-true}
       LOCAL_AUTH_USERNAME: ${LOCAL_AUTH_USERNAME:-admin}
       LOCAL_AUTH_DISPLAY_NAME: ${LOCAL_AUTH_DISPLAY_NAME:-本地管理员}
-      LOCAL_AUTH_PASSWORD_FILE: /run/secrets/local_auth_password
+      LOCAL_AUTH_PASSWORD: ${LOCAL_AUTH_PASSWORD:-}
 
       SESSION_EXPIRE_MINUTES: ${SESSION_EXPIRE_MINUTES:-120}
       SESSION_REFRESH_THRESHOLD_MINUTES: ${SESSION_REFRESH_THRESHOLD_MINUTES:-30}
     command: >
       /bin/sh -c "set -e;
-      if [ -n \"$${LOCAL_AUTH_PASSWORD_FILE:-}\" ] && [ -f \"$${LOCAL_AUTH_PASSWORD_FILE}\" ]; then export LOCAL_AUTH_PASSWORD=$$(cat $${LOCAL_AUTH_PASSWORD_FILE}); fi;
       exec python -m uvicorn app.main:app --host 0.0.0.0 --port 8000"
     restart: unless-stopped
     healthcheck:

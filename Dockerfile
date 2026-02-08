@@ -66,9 +66,6 @@ COPY --chown=appuser:appgroup backend/embedding /app/embedding
 ENV PYTHONUNBUFFERED=1 \
     APP_HOST=0.0.0.0 \
     APP_PORT=8000 \
-    TRANSFORMERS_OFFLINE=1 \
-    HF_DATASETS_OFFLINE=1 \
-    HF_HUB_OFFLINE=1 \
     SENTENCE_TRANSFORMERS_HOME=/app/embedding
 
 # 使用非root用户运行
